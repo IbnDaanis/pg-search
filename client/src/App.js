@@ -2,11 +2,19 @@ import React, { useState } from 'react'
 
 export const App = () => {
   const [query, setQuery] = useState('')
+  const [users, setUsers] = useState(null)
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
 
-    console.log(query)
+    try {
+      const response = await fetch(`http://localhost:5000/users/?name=${query}`)
+      const parsedResponse = await response.json()
+
+      setUsers(parsedResponse)
+    } catch (error) {
+      console.error(error.message)
+    }
   }
 
   return (
