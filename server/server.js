@@ -11,7 +11,7 @@ app.get('/users', async (req, res) => {
     const { name } = req.query
 
     const users = (
-      await pool.query("SELECT * FROM users WHERE first_name || ' ' || last_name LIKE $1", [
+      await pool.query("SELECT * FROM users WHERE first_name || ' ' || last_name ILIKE $1", [
         `%${name}%`
       ])
     ).rows
