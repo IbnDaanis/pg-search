@@ -39,16 +39,18 @@ export const App = () => {
               <th>Last Name</th>
             </tr>
           </thead>
-          <tbody>
-            {users &&
-              users.map(user => (
+          {users && (
+            <tbody>
+              {users.map(user => (
                 <tr key={user.user_id}>
                   <td>{user.first_name}</td>
                   <td>{user.last_name}</td>
                 </tr>
               ))}
-          </tbody>
+            </tbody>
+          )}
         </table>
+        {users && !users.length && <p className='alert alert-danger'>No results found</p>}
       </div>
     </>
   )
